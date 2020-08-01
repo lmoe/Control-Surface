@@ -69,6 +69,13 @@ AH_DIAGNOSTIC_POP()
 #define ADC_RESOLUTION 10
 #define HAS_ANALOG_READ_RESOLUTION 1
 
+// Any STM32 chip
+#elif defined(STM32)
+
+#define ADC_RESOLUTION 10
+#define HAS_ANALOG_READ_RESOLUTION 0
+
+
 // Unknown/Default
 //------------------------------------------------------------------------------
 #else
