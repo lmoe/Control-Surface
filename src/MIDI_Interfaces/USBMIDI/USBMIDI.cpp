@@ -1,3 +1,6 @@
+#ifdef STM32
+    #include "USBMIDI_STM32.ipp"
+#else
 #ifdef ARDUINO
 
 #if defined(TEENSYDUINO)
@@ -34,4 +37,5 @@
 
 #endif
 
+#endif
 #endif

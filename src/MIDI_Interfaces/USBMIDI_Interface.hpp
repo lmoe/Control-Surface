@@ -18,7 +18,7 @@ AH_DIAGNOSTIC_WERROR()
 #endif
 
 // If the main MCU has a USB connection or is a Teensy with MIDI USB type
-#if defined(USBCON) || defined(TEENSY_MIDIUSB_ENABLED) || !defined(ARDUINO)
+#if defined(USBCON) || defined(TEENSY_MIDIUSB_ENABLED) || !defined(ARDUINO) || defined(STM32)
 
 BEGIN_CS_NAMESPACE
 
@@ -69,6 +69,7 @@ class USBMIDI_Interface : public Parsing_MIDI_Interface {
     }
     MIDIUSBPacket_t readUSBPacket() { return USBMIDI::read(); }
     void flushUSB() { USBMIDI::flush(); }
+    void begin() { USBMIDI::begin(); }
 #endif
 
     void sendImpl(uint8_t m, uint8_t c, uint8_t d1, uint8_t d2,
