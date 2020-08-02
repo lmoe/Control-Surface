@@ -69,7 +69,11 @@ class USBMIDI_Interface : public Parsing_MIDI_Interface {
     }
     MIDIUSBPacket_t readUSBPacket() { return USBMIDI::read(); }
     void flushUSB() { USBMIDI::flush(); }
-    void begin() { USBMIDI::begin(); }
+    void begin() { 
+        #ifdef __STM32F1__
+            USBMIDI::begin(); 
+        #endif
+    }
 #endif
 
     void sendImpl(uint8_t m, uint8_t c, uint8_t d1, uint8_t d2,
