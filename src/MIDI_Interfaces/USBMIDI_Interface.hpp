@@ -18,7 +18,7 @@ AH_DIAGNOSTIC_WERROR()
 #endif
 
 // If the main MCU has a USB connection or is a Teensy with MIDI USB type
-#if defined(USBCON) || defined(TEENSY_MIDIUSB_ENABLED) || !defined(ARDUINO) || defined(STM32)
+#if defined(USBCON) || defined(TEENSY_MIDIUSB_ENABLED) || !defined(ARDUINO) || defined(__STM32F1__)
 
 BEGIN_CS_NAMESPACE
 

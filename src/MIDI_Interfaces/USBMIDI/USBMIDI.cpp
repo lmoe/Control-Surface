@@ -1,4 +1,4 @@
-#ifdef STM32
+#ifdef __STM32F1__
     #include "USBMIDI_STM32.ipp"
 #else
 #ifdef ARDUINO

@@ -9,6 +9,10 @@
 #define FLUSH
 #endif
 
+#ifdef __STM32F1__
+    #undef FLUSH
+#endif
+
 BEGIN_AH_NAMESPACE
 
 /* #define OCT 8 */

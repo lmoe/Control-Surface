@@ -254,8 +254,16 @@ FlashString_t getMCUNameFromNoteNumber(uint8_t note) {
     const static char invalid[] PROGMEM = "<out-of-bounds>";
     if (note >= 0x77)
         return reinterpret_cast<FlashString_t>(invalid);
-    const void *flashptr = pgm_read_ptr_near(MCU_Note_Name_LUT + note);
-    return reinterpret_cast<FlashString_t>(flashptr);
+
+    #ifdef __STM32F1__
+        //TODO: pgm_read_ptr_near is not available, and an alternative is unknownst to me.
+        return reinterpret_cast<FlashString_t>(invalid);
+    #else
+        const void *flashptr = pgm_read_ptr_near(MCU_Note_Name_LUT + note);
+        return reinterpret_cast<FlashString_t>(flashptr);
+    #endif
+
+
 }
 
 } // namespace MCU 

@@ -46,7 +46,12 @@ END_AH_NAMESPACE
 #endif
 
 using PinStatus_t = uint8_t;
+
+#ifndef __STM32F1__
 using PinMode_t = uint8_t;
+#else
+using PinMode_t = WiringPinMode;
+#endif
 #if defined(SAMD_SERIES) /* Nano 33 */ || defined(_LIB_SAM_) /* Due */
 using BitOrder_t = BitOrder;
 #else
@@ -56,14 +61,26 @@ using BitOrder_t = uint8_t;
 const PinStatus_t HIGH = AH::detail::tmp_HIGH;
 const PinStatus_t LOW = AH::detail::tmp_LOW;
 
+#ifndef __STM32F1__
 const PinMode_t INPUT = AH::detail::tmp_INPUT;
 const PinMode_t OUTPUT = AH::detail::tmp_OUTPUT;
 const PinMode_t INPUT_PULLUP = AH::detail::tmp_INPUT_PULLUP;
+#endif
 
 #else
 using PinStatus_t = PinStatus;
+
+#ifdef __STM32F1__
+using PinMode_t = WiringPinMode;
+#else
 using PinMode_t = PinMode;
+#endif
 using BitOrder_t = BitOrder;
+#endif
+
+#ifdef __STM32F1__
+    #define NUM_DIGITAL_PINS 35
+    #define NUM_ANALOG_INPUTS 9
 #endif
 
 BEGIN_AH_NAMESPACE
